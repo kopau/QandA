@@ -37,25 +37,25 @@ CREATE TABLE IF NOT EXISTS photos (
 
 -- CREATING FOREGIN KEYS --
 
-ALTER TABLE answers ADD FOREIGN KEY (question_id) REFERENCES questions (question_id);
-ALTER TABLE photos ADD FOREIGN KEY (answer_id) REFERENCES answers (answer_id);
+-- ALTER TABLE answers ADD FOREIGN KEY (question_id) REFERENCES questions (question_id);
+-- ALTER TABLE photos ADD FOREIGN KEY (answer_id) REFERENCES answers (answer_id);
 
--- COPY CSV INTO DB --
+-- -- COPY CSV INTO DB --
 
-COPY questions (question_id, product_id, question_body, question_date, asker_name, asker_email, reported, question_helpfulness)
-FROM '/home/pko/HackReactor/systemdesigncapstone/CSV Files/questions.csv'
-DELIMITER ','
-CSV HEADER;
+-- COPY questions (question_id, product_id, question_body, question_date, asker_name, asker_email, reported, question_helpfulness)
+-- FROM '/home/pko/HackReactor/systemdesigncapstone/CSV Files/questions.csv'
+-- DELIMITER ','
+-- CSV HEADER;
 
-COPY answers (answer_id, question_id, body, date, answerer_name, answerer_email, reported, helpfulness)
-FROM '/home/pko/HackReactor/systemdesigncapstone/CSV Files/answers.csv'
-DELIMITER ','
-CSV HEADER;
+-- COPY answers (answer_id, question_id, body, date, answerer_name, answerer_email, reported, helpfulness)
+-- FROM '/home/pko/HackReactor/systemdesigncapstone/CSV Files/answers.csv'
+-- DELIMITER ','
+-- CSV HEADER;
 
-COPY photos (id, product_id, url)
-FROM '/home/pko/HackReactor/systemdesigncapstone/CSV Files/answers_photos.csv'
-DELIMITER ','
-CSV HEADER;
+-- COPY photos (id, product_id, url)
+-- FROM '/home/pko/HackReactor/systemdesigncapstone/CSV Files/answers_photos.csv'
+-- DELIMITER ','
+-- CSV HEADER;
 
 -- CREATING INDEX --
 
