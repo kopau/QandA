@@ -2,18 +2,23 @@ const models = require('../models');
 
 module.exports = {
   listQuestions: (req, res) => {
-    // let product_id = req.params.product_id;
-    // let page = req.body.page || 1;
-    // let count = req.body.count || 5;
+    let product_id = req.query.product_id;
+    let count = req.query.count || 5;
+    let page = req.query.page || 1;
+    let offset = (page - 1) * count;
 
-    // models.questions.getQuestions(product_id, page, count, (err, result)
+    let params = [product_id, offset, count]
 
-    models.questions.listQuestions()
+    let questionList = {};
+    questionList.product_id = product_id;
+
+    models.questions.listQuestions(params)
       .then((result) => {
-        res.send(result.rows[0]);
+        questionList.results = result;
+        res.send(questionList)
       })
-      .catch((err) => {
-        console.error(err);
+      .catch((error) => {
+        console.error(error);
       })
   },
 
@@ -29,7 +34,6 @@ module.exports = {
           })
           .catch((error) => {
             res.status(400).send('Unable to complete: Add a Question', error)
-            console.error('-----THIS IS THE ERROR----', error);
           })
 
       })

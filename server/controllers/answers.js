@@ -2,7 +2,26 @@ const models = require('../models');
 
 module.exports = {
   listAnswers: (req, res) => {
+    let question_id = req.params.question_id;
+    let count = req.query.count || 5;
+    let page = req.query.page || 1;
+    let offset = (page - 1) * count;
 
+    let params = [question_id, offset, count]
+
+    let answerList = {};
+    answerList.question = question_id;
+    answerList.page = page;
+    answerList.count = count;
+
+    models.answers.listAnswers(params)
+      .then((result) => {
+        answerList.results = result;
+        res.send(answerList);
+      })
+      .catch((error) => {
+        console.error(error);
+      })
   },
 
   addAnswer: (req, res) => {

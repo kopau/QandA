@@ -5,6 +5,8 @@ const controller = require('./controllers');
 
 router.get('/questions', controller.questions.listQuestions);
 
+router.get('/questions/:product_id/:page/:count', controller.questions.listQuestions);
+
 router.post('/questions', controller.questions.addQuestion);
 
 router.put('/questions/:question_id/helpful', controller.questions.markQuestionHelpful);

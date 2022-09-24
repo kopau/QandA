@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS photos (
   answer_id INTEGER NOT NULL,
   url VARCHAR(1000) NOT NULL,
   PRIMARY KEY (id)
--- );
+);
 
 -- CREATING FOREGIN KEYS --
 
@@ -59,5 +59,10 @@ CREATE TABLE IF NOT EXISTS photos (
 
 -- CREATING INDEX --
 
-CREATE INDEX IF NOT EXISTS question_id ON questions(question_id);
-CREATE INDEX IF NOT EXISTS answer_id ON answers(answer_id);
+-- DROP INDEX index_question_id;
+-- DROP INDEX index_answer_id;
+-- DROP INDEX index_photo_id;
+
+CREATE INDEX IF NOT EXISTS index_question_id ON questions(product_id);
+CREATE INDEX IF NOT EXISTS index_answer_id ON answers(question_id);
+CREATE INDEX IF NOT EXISTS index_photo_id ON photos(answer_id);
